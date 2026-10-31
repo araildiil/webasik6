@@ -1,6 +1,7 @@
 # jQuery Assignment #6 (Selectors, Effects, Animations)
 
 **Student:** Arailym Amangeldi
+
 **Group:** SE-2528
 
 ## Description
@@ -27,4 +28,4 @@ The theme uses red and white colors.
 
 ## Live demo
 
-https://<your-username>.github.io/<repository-name>/
+https://github.com/araildiil/webasik6.git
