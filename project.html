@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Assignment - Mini Project</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <span class="brand">jQuery Lab</span>
+      <ul>
+        <li><a href="index.html">Setup &amp; Selectors</a></li>
+        <li><a href="effects.html">Effects</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="animations.html">Animations</a></li>
+        <li><a href="project.html">Mini Project</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <h1>Part 5. Mini Project</h1>
+      <p>Task 11: Accordion Menu</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Accordion Menu</h2>
+        <p>
+          Click a section to expand it. Opening one section closes the others.
+        </p>
+
+        <div class="accordion">
+          <div class="acc-header">
+            <span>What is jQuery?</span><span class="arrow">+</span>
+          </div>
+          <div class="acc-body">
+            <p>
+              jQuery is a JavaScript library that simplifies DOM manipulation,
+              event handling and animations.
+            </p>
+          </div>
+
+          <div class="acc-header">
+            <span>Selectors</span><span class="arrow">+</span>
+          </div>
+          <div class="acc-body">
+            <p>
+              Selectors find elements by ID (#id), class (.class), tag (p) and
+              many other rules.
+            </p>
+          </div>
+
+          <div class="acc-header">
+            <span>Effects</span><span class="arrow">+</span>
+          </div>
+          <div class="acc-body">
+            <p>Effects include show, hide, toggle, fade and slide methods.</p>
+          </div>
+
+          <div class="acc-header">
+            <span>Animations</span><span class="arrow">+</span>
+          </div>
+          <div class="acc-body">
+            <p>
+              The .animate() method changes numeric CSS properties smoothly over
+              time.
+            </p>
+          </div>
+        </div>
+
+        <button class="btn" id="expand-all" style="margin-top: 14px">
+          Expand all
+        </button>
+        <button class="btn" id="collapse-all" style="margin-top: 14px">
+          Collapse all
+        </button>
+      </section>
+    </main>
+
+    <footer>jQuery Assignment #6</footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".acc-header").click(function () {
+          var $header = $(this);
+          var $body = $header.next(".acc-body");
+          var isOpen = $header.hasClass("open");
+
+          // Close all other sections
+          $(".acc-header")
+            .not($header)
+            .removeClass("open")
+            .find(".arrow")
+            .text("+");
+          $(".acc-body").not($body).slideUp(300);
+
+          // Toggle the clicked one
+          $body.slideToggle(300);
+          $header.toggleClass("open", !isOpen);
+          $header.find(".arrow").text(isOpen ? "+" : "−");
+        });
+
+        $("#expand-all").click(function () {
+          $(".acc-body").slideDown(300);
+          $(".acc-header").addClass("open").find(".arrow").text("−");
+        });
+
+        $("#collapse-all").click(function () {
+          $(".acc-body").slideUp(300);
+          $(".acc-header").removeClass("open").find(".arrow").text("+");
+        });
+      });
+    </script>
+  </body>
+</html>
