@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Assignment - DOM Manipulation</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <span class="brand">jQuery Lab</span>
+      <ul>
+        <li><a href="index.html">Setup &amp; Selectors</a></li>
+        <li><a href="effects.html">Effects</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="animations.html">Animations</a></li>
+        <li><a href="project.html">Mini Project</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <h1>Part 3. DOM Manipulation with jQuery</h1>
+      <p>Add &amp; remove elements, attributes, forms</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Task 5. Add &amp; Remove Elements</h2>
+        <ul class="items" id="item-list">
+          <li>Item 1</li>
+          <li>Item 2</li>
+        </ul>
+        <button class="btn" id="add-end">Add Item (append)</button>
+        <button class="btn" id="add-start">Add Item (prepend)</button>
+        <button class="btn" id="remove-item">Remove Item</button>
+      </section>
+
+      <section class="card">
+        <h2>Task 6. Modifying Attributes</h2>
+        <img id="attr-img" class="demo" alt="Changing image" />
+        <button class="btn" id="change-src">Change image src</button>
+
+        <p>
+          Link:
+          <a id="attr-link" href="https://jquery.com" target="_blank"
+            >jQuery official site</a
+          >
+        </p>
+        <button class="btn" id="change-href">Change link href</button>
+        <div class="output">Current href: <span id="href-value"></span></div>
+      </section>
+
+      <section class="card">
+        <h2>Task 7. Form Interaction</h2>
+        <form id="live-form" onsubmit="return false;">
+          <label for="user-name">Name</label>
+          <input type="text" id="user-name" placeholder="Enter your name" />
+          <label for="user-email">Email</label>
+          <input type="email" id="user-email" placeholder="Enter your email" />
+        </form>
+        <div class="output">
+          <p>Name: <strong id="out-name"></strong></p>
+          <p>Email: <strong id="out-email"></strong></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>jQuery Assignment #6</footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Task 5
+        var counter = 2;
+
+        $("#add-end").click(function () {
+          counter++;
+          $("#item-list").append("<li>Item " + counter + " (appended)</li>");
+        });
+
+        $("#add-start").click(function () {
+          counter++;
+          $("#item-list").prepend("<li>Item " + counter + " (prepended)</li>");
+        });
+
+        $("#remove-item").click(function () {
+          $("#item-list li:last").remove();
+        });
+
+        // Task 6
+        var images = ["images/photo1.jpg", "images/photo2.jpg"];
+        var current = 0;
+        $("#attr-img").attr("src", images[current]);
+
+        $("#change-src").click(function () {
+          current = (current + 1) % images.length;
+          $("#attr-img").attr("src", images[current]);
+        });
+
+        var links = ["https://jquery.com", "https://api.jquery.com"];
+        var linkIndex = 0;
+        $("#href-value").text($("#attr-link").attr("href"));
+
+        $("#change-href").click(function () {
+          linkIndex = (linkIndex + 1) % links.length;
+          $("#attr-link")
+            .attr("href", links[linkIndex])
+            .text("Link now points to " + links[linkIndex]);
+          $("#href-value").text($("#attr-link").attr("href"));
+        });
+
+        // Task 7: live display of user input
+        $("#user-name").on("input", function () {
+          $("#out-name").text($(this).val());
+        });
+
+        $("#user-email").on("input", function () {
+          $("#out-email").text($(this).val());
+        });
+      });
+    </script>
+  </body>
+</html>
