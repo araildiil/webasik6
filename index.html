@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Assignment - Setup & Selectors</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <span class="brand">jQuery Lab</span>
+      <ul>
+        <li><a href="index.html">Setup &amp; Selectors</a></li>
+        <li><a href="effects.html">Effects</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="animations.html">Animations</a></li>
+        <li><a href="project.html">Mini Project</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <h1>Part 1. Getting Started with jQuery</h1>
+      <p>Student: Arailym Amangeldi | Group: SE-2528</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Task 0. Setup</h2>
+        <p>
+          jQuery is loaded from a CDN and the
+          <code>$(document).ready()</code> function runs on page load.
+        </p>
+        <p>Open the browser console (F12) to see the message.</p>
+        <div class="output" id="ready-status">Waiting for jQuery...</div>
+      </section>
+
+      <section class="card">
+        <h2>Task 1. Selectors &amp; CSS</h2>
+        <h3 id="main-title">Original title (selected by ID)</h3>
+        <p class="info">Paragraph one (selected by class).</p>
+        <p class="info">Paragraph two (selected by class).</p>
+        <p class="note">
+          A different paragraph (not selected by the class .info).
+        </p>
+
+        <button class="btn" id="btn-text">.text() by ID</button>
+        <button class="btn" id="btn-html">.html() by class</button>
+        <button class="btn" id="btn-css">.css() by tag</button>
+        <button class="btn" id="btn-reset">Reset</button>
+      </section>
+    </main>
+
+    <footer>jQuery Assignment #6</footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Task 0
+        $("#ready-status").text("jQuery is ready!");
+
+        // Task 1: selectors by ID, class and tag
+        var originalTitle = $("#main-title").text();
+        var originalInfo = $(".info")
+          .map(function () {
+            return $(this).text();
+          })
+          .get();
+
+        $("#btn-text").click(function () {
+          $("#main-title").text("Title changed with .text()");
+        });
+
+        $("#btn-html").click(function () {
+          $(".info").html(
+            "<strong>Changed with .html()</strong> <em>(bold + italic)</em>",
+          );
+        });
+
+        $("#btn-css").click(function () {
+          $("p").css({
+            color: "#d62828",
+            "font-size": "18px",
+            "font-weight": "bold",
+          });
+          $(".note").css("background-color", "#fde8e8");
+        });
+
+        $("#btn-reset").click(function () {
+          $("#main-title").text(originalTitle);
+          $(".info").each(function (i) {
+            $(this).text(originalInfo[i]);
+          });
+          $("p").removeAttr("style");
+        });
+      });
+    </script>
+  </body>
+</html>
