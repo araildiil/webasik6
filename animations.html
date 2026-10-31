@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Assignment - Animations</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <span class="brand">jQuery Lab</span>
+      <ul>
+        <li><a href="index.html">Setup &amp; Selectors</a></li>
+        <li><a href="effects.html">Effects</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="animations.html">Animations</a></li>
+        <li><a href="project.html">Mini Project</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <h1>Part 4. Animations</h1>
+      <p>Basic, sequential and combined animations with .animate()</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Task 8. Basic Animation</h2>
+        <button class="btn" id="anim-basic">Animate</button>
+        <button class="btn" id="reset-basic">Reset</button>
+        <div class="stage"><div class="box" id="box1"></div></div>
+      </section>
+
+      <section class="card">
+        <h2>Task 9. Sequential Animations</h2>
+        <p>
+          Move right, then down, then shrink, then return to the original state.
+        </p>
+        <button class="btn" id="anim-seq">Start sequence</button>
+        <div class="stage"><div class="box" id="box2"></div></div>
+      </section>
+
+      <section class="card">
+        <h2>Task 10. Combined Animation</h2>
+        <p>Opacity, size and position change in a single .animate() call.</p>
+        <button class="btn" id="anim-combo">Animate</button>
+        <button class="btn" id="reset-combo">Reset</button>
+        <div class="stage"><div class="box" id="box3"></div></div>
+      </section>
+    </main>
+
+    <footer>jQuery Assignment #6</footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+      $(document).ready(function () {
+        var original = { left: 0, top: 0, width: 60, height: 60, opacity: 1 };
+
+        // Task 8: size and position
+        $("#anim-basic").click(function () {
+          $("#box1").stop(true).animate(
+            {
+              left: "300px",
+              top: "60px",
+              width: "120px",
+              height: "120px",
+            },
+            1000,
+          );
+        });
+
+        $("#reset-basic").click(function () {
+          $("#box1").stop(true).animate(original, 500);
+        });
+
+        // Task 9: step by step (animations are queued automatically)
+        $("#anim-seq").click(function () {
+          $("#box2")
+            .stop(true)
+            .css(original)
+            .animate({ left: "300px" }, 700) // move right
+            .animate({ top: "140px" }, 700) // move down
+            .animate({ width: "30px", height: "30px" }, 700) // shrink
+            .animate(original, 900); // return to original
+        });
+
+        // Task 10: opacity + size + movement in one call
+        $("#anim-combo").click(function () {
+          $("#box3").stop(true).animate(
+            {
+              opacity: 0.3,
+              width: "130px",
+              height: "130px",
+              left: "250px",
+              top: "50px",
+            },
+            1200,
+          );
+        });
+
+        $("#reset-combo").click(function () {
+          $("#box3").stop(true).animate(original, 600);
+        });
+      });
+    </script>
+  </body>
+</html>
