@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Assignment - Effects</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <span class="brand">jQuery Lab</span>
+      <ul>
+        <li><a href="index.html">Setup &amp; Selectors</a></li>
+        <li><a href="effects.html">Effects</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="animations.html">Animations</a></li>
+        <li><a href="project.html">Mini Project</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <h1>Part 2. jQuery Effects</h1>
+      <p>Visibility, Fade and Slide methods</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Task 2. Visibility Methods</h2>
+        <p id="vis-text">
+          This paragraph can be hidden, shown and toggled with jQuery.
+        </p>
+        <button class="btn" id="vis-hide">Hide</button>
+        <button class="btn" id="vis-show">Show</button>
+        <button class="btn" id="vis-toggle">Toggle</button>
+      </section>
+
+      <section class="card">
+        <h2>Task 3. Fade Methods</h2>
+        <img id="fade-img" class="demo" alt="Demo image" />
+        <button class="btn" id="fade-in">fadeIn()</button>
+        <button class="btn" id="fade-out">fadeOut()</button>
+        <button class="btn" id="fade-toggle">fadeToggle()</button>
+      </section>
+
+      <section class="card">
+        <h2>Task 4. Slide Methods</h2>
+        <button class="btn" id="slide-up">slideUp()</button>
+        <button class="btn" id="slide-down">slideDown()</button>
+        <button class="btn" id="slide-toggle">slideToggle()</button>
+        <div class="panel" id="slide-panel">
+          <h3>Collapsible panel</h3>
+          <p>This panel slides up and down using jQuery slide methods.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>jQuery Assignment #6</footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Task 2
+        $("#vis-hide").click(function () {
+          $("#vis-text").hide(500);
+        });
+        $("#vis-show").click(function () {
+          $("#vis-text").show(500);
+        });
+        $("#vis-toggle").click(function () {
+          $("#vis-text").toggle(500);
+        });
+
+        // Task 3
+        $("#fade-img").attr("src", "images/photo3.jpg");
+        $("#fade-in").click(function () {
+          $("#fade-img").fadeIn(800);
+        });
+        $("#fade-out").click(function () {
+          $("#fade-img").fadeOut(800);
+        });
+        $("#fade-toggle").click(function () {
+          $("#fade-img").fadeToggle(800);
+        });
+
+        // Task 4
+        $("#slide-up").click(function () {
+          $("#slide-panel").slideUp(500);
+        });
+        $("#slide-down").click(function () {
+          $("#slide-panel").slideDown(500);
+        });
+        $("#slide-toggle").click(function () {
+          $("#slide-panel").slideToggle(500);
+        });
+      });
+    </script>
+  </body>
+</html>
